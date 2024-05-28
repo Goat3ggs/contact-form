@@ -1,52 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Frontend Mentor | Contact form</title>
+  </head>
+  <body>
+    <main class="container">
+      <h2>Contact Us</h2>
+      <form action="">
+        <!-- section one -->
+        <div class="name-info">
+          <div class="first-name">
+            <label for="fname">First Name</label><br>
+            <input type="text" id="fname" name="fname" required>
+          </div>
+          <div class="last-name">
+            <label for="lname">Last Name</label><br>
+            <input type="text" id="lname" name="lname" required>
+          </div>
+        </div>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Contact form</title>
+        <!-- section two -->
+        <div class="email-info">
+          <label for="email">Email Address</label><br>
+          <input type="email" name="email" id="email" required>
+        </div>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+        <!-- section three -->
+        <div class="radio">
+          <p>Query Type</p>
+          <div class="first-option">
+            <input type="radio" name="option" id="firstOP" value="first" required>
+            <label for="firstOP">General Enquiry</label>
+          </div>
+          <div class="second-option">
+            <input type="radio" name="option" id="secondOP" value="second" required>
+            <label for="secondOP">Support Request</label>
+          </div>
+        </div>
 
-  Contact Us
+        <!-- forth section -->
+        <p>Message</p>
+        <textarea rows="4" cols="" name="comment" form="usrform" required></textarea><br>
 
-  First Name
-  This field is required
+        <!-- fifth section -->
+        <input type="checkbox" name="consent" id="consent" required ="true">
+        <label for="consent">I consent to being contacted by the team</label><br>
 
-  Last Name
-  This field is required
+        <input type="submit" value="Submit">
+      </form>
+      
+      
+    </main>
+    
 
-  Email Address
-  Please enter a valid email address
-  This field is required
+    <!-- Email Address
+    Please enter a valid email address
+    This field is required
 
-  Query Type
-  General Enquiry
-  Support Request
-  Please select a query type
+    Query Type
+    General Enquiry
+    Support Request
+    Please select a query type
 
-  Message
-  This field is required
+    Message
+    This field is required
 
-  I consent to being contacted by the team
-  To submit this form, please consent to being contacted
+    
+    To submit this form, please consent to being contacted
 
-  Submit
+    Submit
 
-  Message Sent!
-  Thanks for completing the form. We'll be in touch soon!
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    Message Sent!
+    Thanks for completing the form. We'll be in touch soon! -->
+    
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </body>
 </html>

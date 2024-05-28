@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Karla";
+    src: url(./assets/fonts/Karla-VariableFont_wght.ttf);
+}
+
+body {
+    font-family: "Karla", sans-serif;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
