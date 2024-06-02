@@ -5,57 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="index.js"></script>
     <title>Frontend Mentor | Contact form</title>
   </head>
   <body>
     <main class="container">
-      <h2>Contact Us</h2>
-      <form action="">
+      <form id="form" action="/">
+        <h2>Contact Us</h2>
         <!-- section one -->
         <div class="name-info">
-          <div class="first-name">
-            <label for="fname">First Name</label><br>
+          <div class="first-name input-control">
+            <label for="fname">First Name <span>*</span></label><br>
             <input type="text" id="fname" name="fname" required>
+            <div class="error"></div>
           </div>
-          <div class="last-name">
-            <label for="lname">Last Name</label><br>
+          <div class="last-name input-control">
+            <label for="lname">Last Name <span>*</span></label><br>
             <input type="text" id="lname" name="lname" required>
+            <div class="error"></div>
           </div>
         </div>
 
         <!-- section two -->
-        <div class="email-info">
-          <label for="email">Email Address</label><br>
+        <div class="email-info input-control">
+          <label for="email">Email Address <span>*</span></label><br>
           <input type="email" name="email" id="email" required>
+          <div class="error"></div>
         </div>
 
         <!-- section three -->
         <div class="radio">
-          <p>Query Type</p>
-          <div class="first-option">
+          <p class="query-title">Query Type <span>*</span></p>
+          
+          <div class="first-option query">
             <input type="radio" name="option" id="firstOP" value="first" required>
             <label for="firstOP">General Enquiry</label>
           </div>
-          <div class="second-option">
+          <div class="second-option query">
             <input type="radio" name="option" id="secondOP" value="second" required>
             <label for="secondOP">Support Request</label>
           </div>
         </div>
 
         <!-- forth section -->
-        <p>Message</p>
-        <textarea rows="4" cols="" name="comment" form="usrform" required></textarea><br>
+        <div class="input-control">
+          <p>Message <span>*</span></p>
+          <textarea rows="7" cols="" name="comment" form="usrform" required class="query"></textarea>
+          <div class="error"></div>
+        </div>
 
         <!-- fifth section -->
         <input type="checkbox" name="consent" id="consent" required ="true">
-        <label for="consent">I consent to being contacted by the team</label><br>
+        <label for="consent">I consent to being contacted by the team <span>*</span></label><br>
 
         <input type="submit" value="Submit">
       </form>
       
       
     </main>
-    
+
 
     <!-- Email Address
     Please enter a valid email address
@@ -81,5 +89,7 @@
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
       Coded by <a href="#">Your Name Here</a>.
     </div>
+
+    
   </body>
 </html>
