@@ -1,18 +1,24 @@
-# Frontend Mentor - Contact form
+# Frontend Mentor - Contact form solution
 
-![Design preview for the Contact form coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Contact form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/contact-form--G-hYlqKJj). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-**To do this challenge, you need a good understanding of HTML, CSS and JavaScript.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to build out this contact form and get it looking as close to the design as possible. Pay particular attention to making this form accessible. Building accessible forms is a key skill for front-end developers. So this is a perfect challenge to practice.
-
-Your users should be able to: 
+Users should be able to:
 
 - Complete the form and see a success toast message upon successful submission
 - Receive form validation messages if:
@@ -23,47 +29,88 @@ Your users should be able to:
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
-## Deploying your project
+### Screenshot
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+![](./design/desktop-preview.jpg)
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+### Links
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- [Live Site URL: ](https://goat3ggs.github.io/contact-form/)
 
-## Create a custom `README.md`
+## My process
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+### Built with
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+### What I learned
 
-## Submitting your solution
+Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+To see how you can add code snippets, see below:
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+When creating the form we should keep in mind that every item added should have its own div for better manipulation and styling.
+```html
+<form>
+  <div class="form-item">
+    <div class="item1">...</div> 
+    <div class="item2">...</div> 
+  </div>
+</form>
+```
+If we want to display a message directly on the page after an action is made we have to keep it outside every parent element:
+```html
+<form>
+  <div>...</div>
+</form>
+<div class="success-message">...</div>
+```
+Use a font that is downloaded using:
+```css
+@font-face {
+  font-family: "name";
+  src: url(/path);
+}
+```
+Keep in mind that a component is usually centered on the page with:
+```css
+body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+}
+```
+Check an input fiel for special characters function:
+  - use "let" instead of "const" to be able to change the content later.
+  - in the FirstName/ LastName validation section implement the function we created
+```js
+let firstName = ...;
+let lastName = ...;
 
-## Sharing your solution
+if(firstName === "") {
+  .
+  .
+} else if (containsSpecialCharacters(firstName)) {
+  /* and here we will select with the document querySelector both the id of the first name element and the form-alert, and instead of the default text we will change it with another*/
+}
 
-There are multiple places you can share your solution:
+function containsSpecialCharacters(str) {
+    const specialCharRegex = /[^\w\s]/gi;
+    return specialCharRegex.test(str);
+}
+```
 
-1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+### Useful resources
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+- [Youtube](https://youtu.be/B8OOjAcOVFg?si=BYWZ-BR8lxiHnIKP) - This helped me to complete the challenge
+- [Reload the page after submitting](https://www.freecodecamp.org/news/javascript-refresh-page-how-to-reload-a-page-in-js/#:~:text=Another%20way%20to%20refresh%20a,page%20with%20the%20new%20content.)
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+## Author
 
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+- Frontend Mentor - [@Goat3ggs](https://www.frontendmentor.io/profile/Goat3ggs)
+- LinkedIn - [Grigore Stefania](https://www.linkedin.com/in/grigore-stefania-029b4a261/)
