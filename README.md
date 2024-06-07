@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- [Live Site URL: ](https://goat3ggs.github.io/contact-form/)
+- [Solution](https://your-solution-url.com)
+- [Live Site](https://goat3ggs.github.io/contact-form/)
 
 ## My process
 
@@ -50,16 +50,15 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
 When creating the form we should keep in mind that every item added should have its own div for better manipulation and styling.
 ```html
 <form>
   <div class="form-item">
     <div class="item1">...</div> 
     <div class="item2">...</div> 
+  </div>
+  <div class="form-item">
+    <div class="item1">...</div> 
   </div>
 </form>
 ```
@@ -85,7 +84,7 @@ body {
   place-content: center;
 }
 ```
-Check an input fiel for special characters function:
+Checks an input fiel for special characters function:
   - use "let" instead of "const" to be able to change the content later.
   - in the FirstName/ LastName validation section implement the function we created
 ```js
@@ -93,11 +92,21 @@ let firstName = ...;
 let lastName = ...;
 
 if(firstName === "") {
-  .
-  .
+  document.querySelector("#first-name + .form-alert").style.display = "block";
+  document.querySelector("#first-name").style.border = "1px solid var(--red)";
 } else if (containsSpecialCharacters(firstName)) {
-  /* and here we will select with the document querySelector both the id of the first name element and the form-alert, and instead of the default text we will change it with another*/
-}
+    /* and here I will use the document querySelector
+    to select both the id of the first-name element 
+    and the form-alert, and instead of the default text
+    that the form-alert contains
+    we will change it with another*/
+    document.querySelector("#first-name + .form-alert").textContent = "Enter a valid name";
+    document.querySelector("#first-name + .form-alert").style.display = "block";
+    document.querySelector("#first-name").style.border = "1px solid var(--red)";
+} else {
+    document.querySelector("#first-name + .form-alert").style.display = "none";
+    document.querySelector("#first-name").style.border = "1px solid var(--medium-grey)";
+    }
 
 function containsSpecialCharacters(str) {
     const specialCharRegex = /[^\w\s]/gi;
