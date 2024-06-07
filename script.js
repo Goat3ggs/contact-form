@@ -4,8 +4,8 @@ const successMessage = document.getElementById('success-message');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const firstName = document.getElementById("first-name").value.trim();
-    const lastName = document.getElementById("last-name").value.trim();
+    let firstName = document.getElementById("first-name").value.trim();
+    let lastName = document.getElementById("last-name").value.trim();
     const email = document.getElementById("email").value.trim();
     const queryType = document.querySelector("input[name='query-type']:checked");
     const message = document.getElementById("message").value.trim();
@@ -13,12 +13,21 @@ form.addEventListener('submit', (e) => {
 
     const formAlert = document.querySelectorAll(".form-alert");
 
+    // Remove special characters
+    // firstName = removeSpecialCharacters(firstName);
+    // lastName = removeSpecialCharacters(lastName);
+
     let isValid = true;
 
     // First Name Validation
     if(firstName === "") {
         isValid = false;
-
+        // I added here an additional step that requires a valid name(the else if statement)
+        document.querySelector("#first-name + .form-alert").style.display = "block";
+        document.querySelector("#first-name").style.border = "1px solid var(--red)";
+    } else if (containsSpecialCharacters(firstName)) {
+        isValid = false;
+        document.querySelector("#first-name + .form-alert").textContent = "Enter a valid name";
         document.querySelector("#first-name + .form-alert").style.display = "block";
         document.querySelector("#first-name").style.border = "1px solid var(--red)";
     } else {
@@ -62,10 +71,10 @@ form.addEventListener('submit', (e) => {
         isValid = false;
 
         document.querySelector("#message + .form-alert").style.display = "block";
-        document.querySelector("#message").style.display = "1px solid var(--red)";
+        document.querySelector("#message").style.border = "1px solid var(--red)";
     } else {
         document.querySelector("#message + .form-alert").style.display = "none";
-        document.querySelector("#message").style.display = "1px solid var(--medium-grey)";
+        document.querySelector("#message").style.border = "1px solid var(--medium-grey)";
     }
 
     // Consent Validation 
@@ -81,8 +90,17 @@ form.addEventListener('submit', (e) => {
     if(isValid) {
         successMessage.classList.add("active");
         form.reset();
+        setTimeout(function() {
+            location.reload();
+        }, 4000);
     }
 })
+
+// Function to remove special characters - this is new as well
+function containsSpecialCharacters(str) {
+    const specialCharRegex = /[^\w\s]/gi;
+    return specialCharRegex.test(str);
+}
 
 // Email Validation Function 
 function isValidEmail(email) {
