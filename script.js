@@ -41,6 +41,11 @@ form.addEventListener('submit', (e) => {
 
         document.querySelector("#last-name + .form-alert").style.display = "block";
         document.querySelector("#last-name").style.border = "1px solid var(--red)";
+    } else if (containsSpecialCharacters(lastName)) {
+        isValid = false;
+        document.querySelector("#last-name + .form-alert").textContent = "Enter a valid name";
+        document.querySelector("#last-name + .form-alert").style.display = "block";
+        document.querySelector("#last-name").style.border = "1px solid var(--red)";
     } else {
         document.querySelector("#last-name + .form-alert").style.display = "none";
         document.querySelector("#last-name").style.border = "1px solid var(--medium-grey)";
