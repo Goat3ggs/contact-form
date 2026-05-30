@@ -1,76 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <title>Frontend Mentor | Contact form</title>
-  </head>
-  <body>
-    <main class="container">
-      <form id="form" action="/">
-        <h2>Contact Us</h2>
-        section one
-        <div class="name-info">
-          <div class="first-name input-control">
-            <label for="fname">First Name <span>*</span></label>
-            <input type="text" id="fname" name="fname" >
-            <div id="error" class="error"></div>
-          </div>
-          <div class="last-name input-control">
-            <label for="lname">Last Name <span>*</span></label><br>
-            <input type="text" id="lname" name="lname" >
-            <div id="error" class="error"></div>
-          </div>
-        </div>
-
-        section two
-        <div class="email-info input-control">
-          <label for="email">Email Address <span>*</span></label><br>
-          <input type="email" name="email" id="email" required>
-          <div class="error"></div>
-        </div>
-
-        section three
-        <div class="radio">
-          <p class="query-title">Query Type <span>*</span></p>
-          
-          <div class="first-option query">
-            <input type="radio" name="option" id="firstOP" value="first" required>
-            <label for="firstOP">General Enquiry</label>
-          </div>
-          <div class="second-option query">
-            <input type="radio" name="option" id="secondOP" value="second" required>
-            <label for="secondOP">Support Request</label>
-          </div>
-        </div>
-
-        forth section
-        <div class="input-control">
-          <p>Message <span>*</span></p>
-          <textarea rows="7" cols="" name="comment" form="usrform" required class="query"></textarea>
-          <div class="error"></div>
-        </div>
-
-        fifth section
-        <input type="checkbox" name="consent" id="consent" required ="true">
-        <label for="consent">I consent to being contacted by the team <span>*</span></label><br>
-
-        <input type="submit" value="Submit">
-      </form>
-      
-      
-    </main>
-    
-    <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </div>
-
-  -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +12,7 @@
     <div class="contact-form">
         <h1>Contact Us</h1>
 
-        <form action="/" id="contact-form" >
+        <form action="/" id="contact-form" novalidate>
             <div class="form-item">
                 <div class="first-name">
                     <label for="first-name">First Name <span class="required-input">*</span></label>
@@ -115,7 +42,7 @@
                     </div>
 
                     <div class="radio-option">
-                        <input type="radio" name="query-type" id="support-request" value="Support Raequest">
+                        <input type="radio" name="query-type" id="support-request" value="Support Request">
                         <label for="support-request">Support Request</label>
                     </div>
                 </div>
@@ -134,16 +61,16 @@
                     <label for="consent">I consent to being contacted by the team <span class="required-input">*</span></label>
                 </div>
 
-                <p class="form-alert">To submit this form, please consent to being contacted</p>
+                <p id="consent-alert" class="form-alert">To submit this form, please consent to being contacted</p>
             </div>
 
-            <button type="submit" id="sybmit-btn" class="submit-btn">Submit</button>
+            <button type="submit" id="submit-btn" class="submit-btn">Submit</button>
         </form>
     </div>
 
     <div id="success-message" class="success-message">
         <div class="message-header">
-            <img src="/assets/images/icon-success-check.svg">
+            <img src="./assets/images/icon-success-check.svg" alt="">
             Message Sent!
         </div>
 

@@ -1,110 +1,155 @@
 const form = document.getElementById("contact-form");
-const successMessage = document.getElementById('success-message');
+const successMessage = document.getElementById("success-message");
 
-form.addEventListener('submit', (e) => {
+// 1. Caching-ul elementelor DOM în afara evenimentului de submit
+const firstNameInput = document.getElementById("first-name");
+const lastNameInput = document.getElementById("last-name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("message");
+const consentInput = document.getElementById("consent");
+
+const firstNameAlert = document.querySelector("#first-name + .form-alert");
+const lastNameAlert = document.querySelector("#last-name + .form-alert");
+const emailAlert = document.querySelector("#email + .form-alert");
+const queryAlert = document.querySelector(".radio-inputs + .form-alert");
+const messageAlert = document.querySelector("#message + .form-alert");
+const consentAlert = document.getElementById("consent-alert");
+
+form.reset();
+
+const formFields = [
+    {
+        element: firstNameInput,
+        alert: firstNameAlert,
+        validate: (val) => {
+            if (val === "") return "This field is required";
+            if (containsInvalidNameCharacters(val)) return "Enter a valid name";
+            return null; 
+        }
+    },
+    {
+        element: lastNameInput,
+        alert: lastNameAlert,
+        validate: (val) => {
+            if (val === "") return "This field is required";
+            if (containsInvalidNameCharacters(val)) return "Enter a valid name";
+            return null;
+        }
+    },
+    {
+        element: emailInput,
+        alert: emailAlert,
+        validate: (val) => {
+            if (val === "") return "This field is required";
+            if (!isValidEmail(val)) return "Please enter a valid email address";
+            return null;
+        }
+    },
+    {
+        element: messageInput,
+        alert: messageAlert,
+        validate: (val) => {
+            if (val === "") return "This field is required";
+            return null;
+        }
+    }
+];
+
+formFields.forEach((field) => {
+    
+    field.element.addEventListener("blur", () => {
+
+        const value = field.element.value.trim();
+        const errorMessage = field.validate(value); 
+        
+        if (errorMessage) {
+            setError(field.element, field.alert, errorMessage);
+        } else {
+            clearError(field.element, field.alert);
+        }
+    });
+
+    field.element.addEventListener("input", () => {
+        const value = field.element.value.trim();
+        const errorMessage = field.validate(value);
+        
+        if (!errorMessage) {
+            clearError(field.element, field.alert);
+        } else if (errorMessage !== "This field is required") {
+            setError(field.element, field.alert, errorMessage);
+        }
+    });
+    
+});
+
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    let firstName = document.getElementById("first-name").value.trim();
-    let lastName = document.getElementById("last-name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const queryType = document.querySelector("input[name='query-type']:checked");
-    const message = document.getElementById("message").value.trim();
-    const consent = document.getElementById("consent").checked;
-
-    const formAlert = document.querySelectorAll(".form-alert");
-
-    // Remove special characters
-    // firstName = removeSpecialCharacters(firstName);
-    // lastName = removeSpecialCharacters(lastName);
 
     let isValid = true;
 
-    // First Name Validation
-    if(firstName === "") {
+    formFields.forEach((field) => {
+        const value = field.element.value.trim();
+        const errorMessage = field.validate(value);
+
+        if (errorMessage) {
+            isValid = false;
+            setError(field.element, field.alert, errorMessage);
+        } else {
+            clearError(field.element, field.alert);
+        }
+    });
+
+
+    const queryType = document.querySelector("input[name='query-type']:checked");
+    if (!queryType) {
         isValid = false;
-        // I added here an additional step that requires a valid name(the else if statement)
-        document.querySelector("#first-name + .form-alert").style.display = "block";
-        document.querySelector("#first-name").style.border = "1px solid var(--red)";
-    } else if (containsSpecialCharacters(firstName)) {
-        isValid = false;
-        document.querySelector("#first-name + .form-alert").textContent = "Enter a valid name";
-        document.querySelector("#first-name + .form-alert").style.display = "block";
-        document.querySelector("#first-name").style.border = "1px solid var(--red)";
+        setError(null, queryAlert);
     } else {
-        document.querySelector("#first-name + .form-alert").style.display = "none";
-        document.querySelector("#first-name").style.border = "1px solid var(--medium-grey)";
+        clearError(null, queryAlert);
     }
 
-    // Last Name Validation
-    if(lastName === "") {
-        isValid = false;
 
-        document.querySelector("#last-name + .form-alert").style.display = "block";
-        document.querySelector("#last-name").style.border = "1px solid var(--red)";
-    } else if (containsSpecialCharacters(lastName)) {
+    const consent = consentInput.checked;
+    if (!consent) {
         isValid = false;
-        document.querySelector("#last-name + .form-alert").textContent = "Enter a valid name";
-        document.querySelector("#last-name + .form-alert").style.display = "block";
-        document.querySelector("#last-name").style.border = "1px solid var(--red)";
+        consentAlert.classList.add("form-error");
     } else {
-        document.querySelector("#last-name + .form-alert").style.display = "none";
-        document.querySelector("#last-name").style.border = "1px solid var(--medium-grey)";
+        consentAlert.classList.remove("form-error");
     }
 
-    // Email Validation
-    if(!isValidEmail(email)) {
-        isValid = false;
 
-        document.querySelector("#email + .form-alert").style.display = "block";
-        document.querySelector("#email").style.border = "1px solid var(--red)";        
-    } else {
-        document.querySelector("#email + .form-alert").style.display = "none";
-        document.querySelector("#email").style.border = "1px solid var(--medium-grey)";
-    }
-
-    // Query Validation
-    if(!queryType) {
-        isValid = false;
-
-        document.querySelector(".radio-inputs + .form-alert").style.display = "block";
-    } else {
-        document.querySelector(".radio-inputs + .form-alert").style.display = "none";
-    }
-
-    // Message Validation 
-    if(message === "") {
-        isValid = false;
-
-        document.querySelector("#message + .form-alert").style.display = "block";
-        document.querySelector("#message").style.border = "1px solid var(--red)";
-    } else {
-        document.querySelector("#message + .form-alert").style.display = "none";
-        document.querySelector("#message").style.border = "1px solid var(--medium-grey)";
-    }
-
-    // Consent Validation 
-    if(!consent) {
-        isValid = false;
-
-        formAlert[5].classList.add("form-error")
-    } else {
-        formAlert[5].classList.remove("form-error")
-    }
-
-    // Form is Valid 
-    if(isValid) {
+    if (isValid) {
         successMessage.classList.add("active");
-        form.reset();
-        setTimeout(function() {
+        form.reset(); // Aceasta va goli formularul
+        setTimeout(() => {
             location.reload();
         }, 4000);
     }
-})
+});
 
-// Function to remove special characters - this is new as well
-function containsSpecialCharacters(str) {
-    const specialCharRegex = /[^\w\s]/gi;
-    return specialCharRegex.test(str);
+// --- HELPFUL FUNCTIONS ---
+
+function setError(inputElement, alertElement, customMessage = null) {
+    alertElement.style.display = "block";
+    if (customMessage) {
+        alertElement.textContent = customMessage;
+    }
+    if (inputElement) {
+        inputElement.style.border = "1px solid var(--red)";
+    }
+}
+
+function clearError(inputElement, alertElement) {
+    alertElement.style.display = "none";
+    if (inputElement) {
+        inputElement.style.border = "1px solid var(--medium-grey)";
+    }
+}
+
+function containsInvalidNameCharacters(str) {
+    // Permite doar litere (inclusiv diacritice românești), spații și cratime
+    const invalidCharRegex = /[^a-zA-ZăâîșțĂÂÎȘȚ\s\-']/g;
+    return invalidCharRegex.test(str);
 }
 
 // Email Validation Function 
@@ -112,3 +157,16 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+// const radioInputs = document.querySelectorAll("input[name='query-type']");
+// const radioOptions = document.querySelectorAll(".radio-option");
+
+// radioInputs.forEach((radio) =>  {
+//     radio.addEventListener("change", () => {
+//         radioOptions.forEach((option) => {
+//             option.classList.remove("active");
+//         });
+
+//         radio.closest(".radio-option").classList.add("active");
+//     });
+// });
