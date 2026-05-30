@@ -11,6 +11,7 @@
     /* Primary */
 
     --light-green: hsl(148, 38%, 91%);
+    --light-green2: hsl(147, 17%, 63%);
     --medium-green: hsl(169, 82%, 27%);
     --red: hsl(0, 66%, 56%);
 
@@ -23,7 +24,7 @@
 body {
     font-family: "Karla", sans-serif;
     /* font-size: 16px; */
-    background-color: var(--light-green);
+    background-color: var(--light-green2);
 
     min-height: 100vh;
     display: grid;
